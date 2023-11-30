@@ -1,0 +1,15 @@
+D:\програмы\geekbrains\C#\seminar_2\bin\Debug\net6.0\seminar_2.exe
+D:\програмы\geekbrains\C#\seminar_2\bin\Debug\net6.0\seminar_2.deps.json
+D:\програмы\geekbrains\C#\seminar_2\bin\Debug\net6.0\seminar_2.runtimeconfig.json
+D:\програмы\geekbrains\C#\seminar_2\bin\Debug\net6.0\seminar_2.dll
+D:\програмы\geekbrains\C#\seminar_2\bin\Debug\net6.0\seminar_2.pdb
+D:\програмы\geekbrains\C#\seminar_2\obj\Debug\net6.0\seminar_2.csproj.AssemblyReference.cache
+D:\програмы\geekbrains\C#\seminar_2\obj\Debug\net6.0\seminar_2.GeneratedMSBuildEditorConfig.editorconfig
+D:\програмы\geekbrains\C#\seminar_2\obj\Debug\net6.0\seminar_2.AssemblyInfoInputs.cache
+D:\програмы\geekbrains\C#\seminar_2\obj\Debug\net6.0\seminar_2.AssemblyInfo.cs
+D:\програмы\geekbrains\C#\seminar_2\obj\Debug\net6.0\seminar_2.csproj.CoreCompileInputs.cache
+D:\програмы\geekbrains\C#\seminar_2\obj\Debug\net6.0\seminar_2.dll
+D:\програмы\geekbrains\C#\seminar_2\obj\Debug\net6.0\refint\seminar_2.dll
+D:\програмы\geekbrains\C#\seminar_2\obj\Debug\net6.0\seminar_2.pdb
+D:\програмы\geekbrains\C#\seminar_2\obj\Debug\net6.0\seminar_2.genruntimeconfig.cache
+D:\програмы\geekbrains\C#\seminar_2\obj\Debug\net6.0\ref\seminar_2.dll

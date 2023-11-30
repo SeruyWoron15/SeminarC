@@ -1,0 +1,193 @@
+using System;
+
+public class Answer {
+    public static void PrintArray (int [,] matrix)
+    {
+      // Введите свое решение ниже
+        for (int i=0; i<matrix.GetLength(0); i++)
+        {
+            for (int j=0; j<matrix.GetLength(1);j++)
+            {
+                Console.Write($"{matrix[i,j]}"+"\t");
+            }
+            Console.WriteLine();
+        }
+
+    }
+  
+    public static int[,] CreateIncreasingMatrix(int n, int m, int k)
+    {
+      // Введите свое решение ниже
+        int[,] newMatrix = new int[n,m];
+        int currentValue = 1;
+        for (int i=0; i<n; i++)
+        {
+            for (int j=0; j<m; j++)
+            {
+                newMatrix[i,j] = currentValue;
+                currentValue += k;
+            }
+        }
+        return newMatrix;
+
+    }
+  
+    static void PrintListAvr (double [] list)
+    {
+      // Введите свое решение ниже
+    Console.WriteLine("The averages in columns are:");
+    string s="";
+
+            for (int j=0; j<list.Length; j++)
+            {
+                Console.Write("{0: 0.00}",list[j]);
+                if (j<list.Length-1)
+                {
+                   Console.Write("\t") ;
+                }
+            }
+    Console.WriteLine(s);    
+    }
+
+    static double [] FindAverageInColumns (int [,] matrix)
+    { 
+      // Введите свое решение ниже
+        int col =matrix.GetLength(1);
+        int row = matrix.GetLength(0);
+
+        double [] avg = new double[col];
+
+        for (int i=0; i<col; i++)
+        {
+            for (int j=0; j<row; j++)
+            {
+                avg[i] = avg[i]+matrix[j,i];
+            }
+            avg[i]=Math.Round(avg[i]/row, 2);
+        }
+        return avg;
+    }
+
+
+    // Не удаляйте и не меняйте метод Main! 
+    static public void Main(string[] args) {
+        int n, m, k;
+
+        if (args.Length >= 3) {
+           n = int.Parse(args[0]);
+           m = int.Parse(args[1]);
+           k = int.Parse(args[2]);
+        } else {
+           // Здесь вы можете поменять значения для отправки кода на Выполнение
+           n = 4;
+           m = 5;
+           k = 3;
+        }
+
+        // Не удаляйте строки ниже
+        int[,] result = CreateIncreasingMatrix(n, m, k);
+        PrintArray(result);
+        PrintListAvr(FindAverageInColumns(result));
+    }
+}
+
+
+using System;
+
+public class Answer
+{
+    public static void PrintMatrix(int[,] matrix)
+    {
+// Введите свое решение ниже
+        for (int i=0; i<matrix.GetLength(0); i++)
+        {
+            for (int j=0; j<matrix.GetLength(1);j++)
+            {
+                Console.Write($"{matrix[i,j]}"+"\t");
+            }
+            Console.WriteLine();
+        }
+    }
+
+
+    public static void SortRowsDescending(int[,] matrix)
+    {
+// Введите свое решение ниже
+        int col =matrix.GetLength(1);
+        int row = matrix.GetLength(0);
+        for (int i =0; i< row; i++)
+        {
+                for (int j=0; j < col; j++)
+                {
+                    int max =j;
+                    for (int k=j; k < col; k++)
+                    {
+                        if (matrix[i,max]< matrix[i,k])
+                        {
+                            max=k;
+                        }
+                    }
+                        if (max!=j)
+                        {
+                            int temp = matrix[i,j];
+                            matrix[i,j]=matrix[i,max];
+                            matrix[i,max]= temp;
+                        }
+                }
+
+
+        }
+
+    }
+
+
+// Не удаляйте и не меняйте метод Main! 
+    public static void Main(string[] args)
+    {
+        int[,] matrix;
+        if (args.Length == 0)
+        {
+            // Если аргументы не переданы, используем матрицу по умолчанию
+            matrix = new int[,] {
+                {5, 2, 9},
+                {8, 1, 4},
+                {6, 7, 3}
+            };
+        }
+        else
+        {
+            // Иначе, парсим аргументы в двумерный массив
+            string[] rows = args[0].Split(';');
+            matrix = new int[rows.Length, rows[0].Split(',').Length];
+            for (int i = 0; i < rows.Length; i++)
+            {
+                string[] elements = rows[i].Split(',');
+                if (elements.Length != matrix.GetLength(1))
+                {
+                    Console.WriteLine($"Ошибка: Неправильное количество элементов в строке {i + 1}.");
+                    return;
+                }
+                for (int j = 0; j < elements.Length; j++)
+                {
+                    if (int.TryParse(elements[j], out int number))
+                    {
+                        matrix[i, j] = number;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Ошибка при парсинге аргумента {elements[j]}.");
+                        return;
+                    }
+                }
+            }
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        PrintMatrix(matrix);
+
+        SortRowsDescending(matrix);
+
+        Console.WriteLine("\nМатрица с упорядоченными по убыванию строками:");
+        PrintMatrix(matrix);
+    }
+}

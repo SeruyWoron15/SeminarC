@@ -1,0 +1,268 @@
+using System;
+
+public class Answer {
+  public static double[, ] CreateRandomMatrix(int m, int n, int minLimitRandom, int maxLimitRandom) {
+      // Введите свое решение ниже
+    double[, ] array = new double[m,n];
+    for (int i =0 ; i<m; i++)
+    {
+          for (int j =0 ; j<n; j++)
+    {
+        array[i,j]=new Random().Next(minLimitRandom, maxLimitRandom);
+    }  
+    }
+
+return array;
+  }
+
+  public static void PrintArray(double[, ] matrix) {
+      // Введите свое решение ниже
+    int rows = matrix.GetUpperBound(0) + 1;    // количество строк
+    int columns = matrix.Length / rows; 
+    for (int i = 0; i < rows; i++)
+{
+    for (int j = 0; j < columns; j++)
+    {
+        Console.Write($"{matrix[i, j]}");
+        if (j<columns-1)
+        {
+           Console.Write("\t"); 
+        }
+    }
+    Console.WriteLine();
+}
+
+  }
+
+  // Не удаляйте и не меняйте метод Main! 
+  public static void Main(string[] args) {
+    int m, n, minLimitRandom, maxLimitRandom;
+
+    if (args.Length >= 4) {
+      m = int.Parse(args[0]);
+      n = int.Parse(args[1]);
+      minLimitRandom = int.Parse(args[2]);
+      maxLimitRandom = int.Parse(args[3]);
+
+      double[,] array = CreateRandomMatrix(m, n, minLimitRandom, maxLimitRandom);
+
+        // Выберем случайные индексы трех элементов матрицы array
+        int row1 = new Random().Next(0, m);
+        int col1 = new Random().Next(0, n);
+        int row2 = new Random().Next(0, m);
+        int col2 = new Random().Next(0, n);
+        int row3 = new Random().Next(0, m);
+        int col3 = new Random().Next(0, n);
+
+        // Проверяем, являются ли выбранные элементы дробными числами
+        bool isFractional1 = (array[row1, col1] % 1) != 0;
+        bool isFractional2 = (array[row2, col2] % 1) != 0;
+        bool isFractional3 = (array[row3, col3] % 1) != 0;
+
+        // Если два из трех элементов не являются дробными числами, то бросаем исключение
+        if ((isFractional1 && isFractional2) || (isFractional1 && isFractional3) || (isFractional2 && isFractional3))
+        {
+            Console.WriteLine("Все ок!");
+        }
+        else
+        {
+            throw new Exception("Выбранные элементы не содержат по крайней мере два дробных числа.");
+        }
+    } else {
+      m = 3;
+      n = 4;
+      minLimitRandom = -10;
+      maxLimitRandom = 10;
+      
+      double[, ] result = CreateRandomMatrix(m, n, minLimitRandom, maxLimitRandom);
+      PrintArray(result);
+    }
+  }
+}
+
+
+
+using System;
+
+public class Answer
+{
+    public static double FindMax(double[] array)
+    {     // Введите свое решение ниже
+  double max=array[0];
+      for (int i=0; i< array.Length; i++)
+      {
+        if (array[i]>max)
+        {
+          max=array[i];  
+        }
+      }
+      return max; 
+    }
+
+    public static double FindMin(double[] array)
+    {     // Введите свое решение ниже
+  double min=array[0];
+      for (int i=0; i< array.Length; i++)
+      {
+        if (array[i]<min)
+        {
+          min=array[i];  
+        }
+      }
+      return min; 
+
+
+    }
+
+    public static double CalcDifferenceBetweenMaxMin(double[] array)
+    {// Введите свое решение ниже
+
+  return FindMax(array)-FindMin(array);
+
+    }
+
+    public static void PrintArray(double[] array)
+    {
+    // Введите свое решение ниже
+    string res="";
+    for (int i=0; i< array.Length-1; i++)
+      {
+        res=res+array[i]+"\t";
+      }
+      res=res+array[array.Length-1];
+      Console.WriteLine(res);
+
+    }
+
+ // Не удаляйте и не меняйте метод Main! 
+
+
+    public static void Main(string[] args)
+    {
+        double[] array;
+        if (args.Length == 0)
+        {
+            array = new double[] { 3, 7.4, 22.3, 2, 78 };
+        }
+        else
+        {
+            // Иначе, парсим аргументы в массив чисел
+            string[] argStrings = args[0].Split(", ");
+            array = new double[argStrings.Length];
+            for (int i = 0; i < argStrings.Length; i++)
+            {
+                if (double.TryParse(argStrings[i], out double number))
+                {
+                    array[i] = number;
+                }
+                else
+                {
+                    Console.WriteLine($"Ошибка при парсинге аргумента {argStrings[i]}.");
+                    return;
+                }
+            }
+        }
+
+        Console.WriteLine("Массив:");
+        PrintArray(array);
+        double diff = CalcDifferenceBetweenMaxMin(array);
+        Console.WriteLine($"Разность между максимальным и минимальным элементом = {diff:f2}");
+    }
+}
+
+using System;
+
+public class Answer
+{
+    public static int SumOfRow(int[,] matrix, int row)
+    {
+// Введите свое решение ниже
+        int col =matrix.GetLength(1);
+        int sum =0;
+        for (int i =0; i< col; i++)
+        {
+            sum=sum+matrix[row, i];
+        }
+        return sum;
+
+    }
+
+    public static int[] MinimumSumRow(int[,] matrix)
+    {
+// Введите свое решение ниже
+        int row =matrix.GetLength(0);
+        int min =0 ;
+        int sum = SumOfRow(matrix, 0);
+        for (int i =1; i< row; i++)
+        {
+            int sunrow=SumOfRow(matrix, i);
+            if (sunrow< sum)
+            {
+                sum=sunrow;
+                min=i;
+            }
+        }
+        int [] res;
+        res = new int[] {min, sum};
+
+        return res;
+    }
+
+ // Не удаляйте и не меняйте метод Main! 
+    public static void Main(string[] args)
+    {
+        int[,] matrix;
+        if (args.Length == 0)
+        {
+           // Здесь вы можете поменять значения для отправки кода на Выполнение
+          // Если аргументы не переданы, используем матрицу по умолчанию
+            
+            matrix = new int[,]
+            {
+                {5, 2, 9},
+                {8, 1, 4},
+                {6, 7, 3}
+            };
+        }
+        else
+        {
+            // Иначе, парсим аргументы в двумерный массив
+            string[] rows = args[0].Split(';');
+            matrix = new int[rows.Length, rows[0].Split(',').Length];
+            for (int i = 0; i < rows.Length; i++)
+            {
+                string[] elements = rows[i].Split(',');
+                for (int j = 0; j < elements.Length; j++)
+                {
+                    if (int.TryParse(elements[j], out int number))
+                    {
+                        matrix[i, j] = number;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Ошибка при парсинге аргумента {elements[j]}.");
+                        return;
+                    }
+                }
+            }
+        }
+
+        Console.WriteLine("Исходная матрица:");
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                Console.Write($"{matrix[i, j]}\t");
+            }
+            Console.WriteLine();
+        }
+
+        int[] minSumRow = MinimumSumRow(matrix);
+
+        Console.WriteLine($"\nСумма наименьшей строки (строка {minSumRow[0] + 1}): {minSumRow[1]}");
+
+        int rowToSum = 1; 
+        int sum = SumOfRow(matrix, rowToSum);
+        Console.WriteLine($"Сумма элементов в строке {rowToSum + 1}: {sum}");
+    }
+}
